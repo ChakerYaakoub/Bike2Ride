@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/searchProduct.css">
+
+  <script src="javascript/ajax/jquery-3.1.1.min.js" type="text/javascript"></script>
+  <script src="javascript/ajax/ajaxEditProduct.js" type="text/javascript"></script>
+  <!-- <script src="javascript/ajax/ajaxRemoveProduct.js" type="text/javascript"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+
+  
+
+
+  
+  
+  
+
+
+  <title>Document</title>
+</head>
+
+<body>
+ 
+ 
+
+  <br>
+  <center><label><input id="search" type="text"
+        placeholder="You can search for a product to modify or remove (preferably search by ID) "></label> </center>
+  <br>
+  <p>Note: Do not delete products unless necessary. Deleting products from the data may cause some problems because they
+    are related to other output and other data.</p><br>
+  <div class="mytabb" style="overflow-x:auto;">
+    <center>
+      <table id="empTable">
+        <tr>
+          <th>Product ID</th>
+          <th>Categories</th>
+          <th>Product</th>
+
+          <th>Description</th>
+
+          <th>Stock</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Remove</th>
+
+        </tr>
+
+        <tbody id="myTable"></tbody>
+
+  
+
+
+
+      </table>
+
+    </center>
+
+
+
+  </div>
+
+  </div>
+
+  
+
+
+
+  <script>
+
+$(document).ready(function(){
+  $("#search").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#empTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+
+
+
+
+  </script>
+  <!-- http://jsfiddle.net/k5hkR/ -->
+
+  <!-- https://www.w3schools.com/jquery/jquery_filters.asp -->
+  
+
+
+  <script>
+    let removeRow = (oButton,id) => {
+      let text = "Click OK if you are sure of your decision to delete this item";
+      if (confirm(text) == true) {
+        let empTab = document.getElementById('empTable');
+        empTab.deleteRow(oButton.parentNode.parentNode.rowIndex); // buttton -> td -> tr;
+        location.href="removeProduct.php?product_id="+id; 
+      } else {
+        text = "You canceled!";
+      }
+
+    }
+
+
+  </script>
+
+<script src="sweetalert.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script id="removeYes">
+
+  </script>
+</body>
+
+</html>
